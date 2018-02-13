@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="172.0" prefWidth="302.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="112.0" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <children>
+            <Label text="Quelle monnaie souhaitez vous ajouter ?" textAlignment="CENTER">
+               <font>
+                  <Font name="Consolas Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField alignment="CENTER" promptText="Entrez votre choix (Sans faute)" />
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                <Button mnemonicParsing="false" text="Accepter" />
+                  <Button mnemonicParsing="false" text="Annuler" />
+              </buttons>
+            </ButtonBar>
+         </children>
+         <padding>
+            <Insets bottom="25.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

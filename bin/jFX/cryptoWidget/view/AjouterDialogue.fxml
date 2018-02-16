@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="172.0" prefWidth="302.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1">
+<AnchorPane prefHeight="172.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jFX.cryptoWidget.view.AjouterDialogueController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="112.0" layoutY="50.0" prefHeight="300.0" prefWidth="300.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
          <children>
@@ -19,11 +18,11 @@
                   <Font name="Consolas Bold" size="13.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" promptText="Entrez votre choix (Sans faute)" />
+            <TextField fx:id="nomCrypto" alignment="CENTER" promptText="Entrez votre choix (Sans faute)" />
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Accepter" />
-                  <Button mnemonicParsing="false" text="Annuler" />
+                <Button mnemonicParsing="false" onAction="#handleAccepter" text="Accepter" />
+                  <Button mnemonicParsing="false" onAction="#handleCancel" text="Annuler" />
               </buttons>
             </ButtonBar>
          </children>

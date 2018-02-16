@@ -40,6 +40,7 @@ public class GestionCryptoController {
 	@FXML
 	private void handleActualiser() {
 		//Connection au site coinMarketCap pour actualiser l'ensemble de la liste
+		
 	}
 	
 	/**
@@ -47,7 +48,11 @@ public class GestionCryptoController {
 	 */
 	@FXML
 	private void handleAjouter() {
-		
+		CryptoMonnaie cMTemp = new CryptoMonnaie();
+        boolean okClicked = mainApp.showAjouterDialogController();
+        if (okClicked) {
+            
+        }
 	}
 	
 	

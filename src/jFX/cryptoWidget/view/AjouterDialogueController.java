@@ -79,6 +79,7 @@ public class AjouterDialogueController {
 	private boolean inputNameCryptoValid() {
 		//Vérification que le nom existe sur le site coinmarketCap
 		Connection con = new Connection();
+		System.out.println(con.estExistant(nomCrypto.getText()));
 		return (con.estExistant(nomCrypto.getText()));
 		
 	}

@@ -50,7 +50,7 @@ public class Connection {
 	 */
 	public boolean estExistant(String urlCrypto) {
 		try {
-		    URL url = new URL(urlCrypto);
+		    this.setURL(urlCrypto);
 		    URLConnection conn = url.openConnection();
 		    conn.connect();
 		} catch (MalformedURLException e) {
@@ -59,7 +59,10 @@ public class Connection {
 		} catch (IOException e) {
 		    // La connection n'a pas pu être établie
 			return false;
+		//} catch (FileNotFoundException e) {
+		//	return false;
 		}
+		
 		return true;
 	}
 	

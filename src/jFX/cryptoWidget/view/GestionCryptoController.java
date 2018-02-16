@@ -48,11 +48,9 @@ public class GestionCryptoController {
 	 */
 	@FXML
 	private void handleAjouter() {
-		CryptoMonnaie cMTemp = new CryptoMonnaie();
+		//CryptoMonnaie cMTemp = new CryptoMonnaie();
         boolean okClicked = mainApp.showAjouterDialogController();
-        if (okClicked) {
-            
-        }
+        
 	}
 	
 	

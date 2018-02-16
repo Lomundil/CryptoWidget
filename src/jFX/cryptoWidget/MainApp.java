@@ -93,8 +93,8 @@ public class MainApp extends Application {
             rootScrollPane.setContent(gestionCrypto);   
 
             // Give the controller access to the main app.
-            //PersonOverviewController controller = loader.getController();
-            //controller.setMainApp(this);
+            GestionCryptoController controller = loader.getController();
+            controller.setMainApp(this);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -124,10 +124,10 @@ public class MainApp extends Application {
     public boolean showAjouterDialogController() {
     	try {
             // Load the fxml file and create a new stage for the popup dialog.
+    		System.out.println("test1");
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/AjouterDialogueController.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/AjouterDialogue.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
-
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
             dialogStage.setTitle("AjouterCrypto");
@@ -135,8 +135,6 @@ public class MainApp extends Application {
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
-
-            
             AjouterDialogueController controller = loader.getController();
             controller.setStage(dialogStage);
 

@@ -43,7 +43,7 @@ public class FicheCryptoController {
      */
 	@FXML
 	private void initialize() {
-	    	
+		 
 	}
 	        
 	    

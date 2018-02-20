@@ -37,10 +37,6 @@ public class MainApp extends Application {
 	public MainApp() {
 		cryptoData.add(new CryptoMonnaie("Bitcoin"));
 		cryptoData.add(new CryptoMonnaie("Ethereum"));
-		cryptoData.add(new CryptoMonnaie("Iota"));
-		cryptoData.add(new CryptoMonnaie("Tron"));
-		cryptoData.add(new CryptoMonnaie("Stellar"));
-		cryptoData.add(new CryptoMonnaie("Litecoin"));
 	}
 	
 	public ObservableList<CryptoMonnaie> getCryptoData(){
@@ -108,7 +104,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/FicheCrypto.fxml"));
             AnchorPane ficheCrypto = (AnchorPane) loader.load();
 
-            // Set person overview into the center of root layout.
+            // Set gestionCrypto into the center of root layout.
             gestionCrypto.getChildren().add(ficheCrypto);
 
             // Give the controller access to the main app.
@@ -121,10 +117,9 @@ public class MainApp extends Application {
     	}
     }
 	
-    public boolean showAjouterDialogController() {
+    public boolean showAjouterDialogController(CryptoMonnaie cM) {
     	try {
             // Load the fxml file and create a new stage for the popup dialog.
-    		System.out.println("test1");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/AjouterDialogue.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
@@ -137,6 +132,7 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
             AjouterDialogueController controller = loader.getController();
             controller.setStage(dialogStage);
+            controller.setCrypto(cM);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

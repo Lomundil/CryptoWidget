@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import jFX.cryptoWidget.model.*;
 import jFX.cryptoWidget.util.Connection;
+import jFX.cryptoWidget.util.TransformationTxtCryptoObject;
 
 public class AjouterDialogueController {
 	
@@ -63,6 +64,13 @@ public class AjouterDialogueController {
 			cryptoTemp.setNomCrypto(nomCrypto.getText());
 			con.setURL(cryptoTemp.getNomCrypto());
 			con.creationCryptoFile(cryptoTemp.getNomCrypto());
+			
+			//Transformer le .txt en object Crypto
+			TransformationTxtCryptoObject transfo = new TransformationTxtCryptoObject();
+			this.setCrypto(transfo.transfo(cryptoTemp)); 
+			
+			okClicked = true;
+            addDialogStage.close();
 		}
 		else {
 			// Show the error message.
@@ -79,7 +87,6 @@ public class AjouterDialogueController {
 	private boolean inputNameCryptoValid() {
 		//Vérification que le nom existe sur le site coinmarketCap
 		Connection con = new Connection();
-		System.out.println(con.estExistant(nomCrypto.getText()));
 		return (con.estExistant(nomCrypto.getText()));
 		
 	}

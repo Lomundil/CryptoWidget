@@ -53,17 +53,19 @@ public class Connection {
 		    this.setURL(urlCrypto);
 		    URLConnection conn = url.openConnection();
 		    conn.connect();
-		} catch (MalformedURLException e) {
-		    // L'url donné n'est pas valide
+		    //Vérification de la taille du contenu de la page pour vérifier que l'url est valide
+		    if (conn.getContentLength() < 50) {
+		    	return false;
+		    }
+		    else {
+		    	return true;
+		    }
+		} catch (SocketTimeoutException e) {
 			return false;
 		} catch (IOException e) {
-		    // La connection n'a pas pu être établie
+			System.out.println(e.getClass());
 			return false;
-		//} catch (FileNotFoundException e) {
-		//	return false;
-		}
-		
-		return true;
+		}	
 	}
 	
 	/**

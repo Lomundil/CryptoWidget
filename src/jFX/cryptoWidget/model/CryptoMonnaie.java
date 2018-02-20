@@ -23,7 +23,7 @@ public class CryptoMonnaie {
 
 	private StringProperty nomCrypto;
 	private StringProperty siteCrypto;
-	private IntegerProperty prix;
+	private DoubleProperty prix;
 	private DoubleProperty marketCap;
 	private FloatProperty variation;
 	private DoubleProperty volume;
@@ -43,7 +43,7 @@ public class CryptoMonnaie {
 	public CryptoMonnaie(String nom) {
 		this.nomCrypto = new SimpleStringProperty(nom);
 		this.siteCrypto = new SimpleStringProperty("https://api.coinmarketcap.com/v1/ticker/" + nom + "/");
-		this.prix = new SimpleIntegerProperty(2);
+		this.prix = new SimpleDoubleProperty(2);
 		this.marketCap = new SimpleDoubleProperty(1500000);
 		this.variation = new SimpleFloatProperty(4);
 		this.volume = new SimpleDoubleProperty(120000);
@@ -62,15 +62,15 @@ public class CryptoMonnaie {
 		return nomCrypto;
 	}
 	
-	public int getPrix() {
+	public double getPrix() {
 		return prix.get();
 	}
 	
-	public void setPrix(int prix) {
+	public void setPrix(double prix) {
 		this.prix.set(prix);
 	}
 	
-	public IntegerProperty prixProperty() {
+	public DoubleProperty prixProperty() {
 		return prix;
 	}
 	

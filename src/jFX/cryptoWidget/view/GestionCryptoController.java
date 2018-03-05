@@ -38,28 +38,6 @@ public class GestionCryptoController {
 	@FXML
 	private void initialize() {
 		
-			
-			
-			
-			/*public void onChanged(Change<? extends CryptoMonnaie> c) {
-		         while (c.next()) {
-		        	 if(c.wasPermutated()) {
-		        		 // Gérer les permutations
-		                     
-	                 } else if (c.wasUpdated()) {
-		                          //update item
-	                 } else if (c.wasRemoved()){
-	                     
-	                 } else if (c.wasAdded()) {
-	                    	//mainApp.showFicheCrypto(c.getAddedSubList().get(0)); 
-	                 }
-	                 
- 				}
-			}
-
-
-		});*/
-		
 		        
 	}
 	

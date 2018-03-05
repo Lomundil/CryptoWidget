@@ -1,13 +1,25 @@
 package jFX.cryptoWidget;
 import jFX.cryptoWidget.model.*;
+import jFX.cryptoWidget.util.Connection;
+import jFX.cryptoWidget.util.TestTransfo;
+import jFX.cryptoWidget.util.TransformationTxtCryptoObject;
 import jFX.cryptoWidget.view.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -25,6 +37,8 @@ public class MainApp extends Application {
 	private ScrollPane rootScrollPane;
 	private BorderPane rootLayout;
 	private VBox gestionCrypto;
+	private BufferedWriter fileout;
+	private BufferedReader filein;
 	
 	/**
 	 * Les données des cryptos comme une liste de cryptos observables
@@ -35,8 +49,16 @@ public class MainApp extends Application {
 	 * Constructeur
 	 */
 	public MainApp() {
-		cryptoData.add(new CryptoMonnaie("Bitcoin"));
-		cryptoData.add(new CryptoMonnaie("Ethereum"));
+		
+		try {
+			File f = new File("resources/cryptoFile/Sauvegarde.txt");
+			if(f.exists()) {
+				recupSauvegarde();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public ObservableList<CryptoMonnaie> getCryptoData(){
@@ -166,6 +188,49 @@ public class MainApp extends Application {
         }
     }
 	
+    /*
+     * Sauvegarde des cryptos ajoutés par l'utilisateur
+     */
+    private void sauvegardeCrypto() throws IOException {
+    	try {
+			fileout = new BufferedWriter(new FileWriter("resources/cryptoFile/Sauvegarde.txt"));
+			for(int index = 0; index < this.getCryptoData().size(); index++) {
+				fileout.write(this.getCryptoData().get(index).getNomCrypto());
+				fileout.newLine();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			fileout.close();
+		}
+    }
+    
+    /*
+     * Récupération des cryptos mis en sauvegarde
+     */
+    private void recupSauvegarde() throws IOException {
+    	TransformationTxtCryptoObject tr = new TransformationTxtCryptoObject();
+    	try {
+    		filein = new BufferedReader(new FileReader("resources/cryptoFile/Sauvegarde.txt"));
+    		String strNom;
+    		while((strNom = filein.readLine()) != null) {
+    			CryptoMonnaie cMTemp = new CryptoMonnaie(strNom);
+    			Connection co = new Connection();
+    			co.setURL(strNom);
+    			co.creationCryptoFile(strNom);
+    			cMTemp = tr.transfo(cMTemp);
+    			this.getCryptoData().add(cMTemp);
+    		}
+    	} catch(FileNotFoundException fe) {
+    		fe.printStackTrace();
+    	} catch(IOException e) {
+    		System.out.println(e);
+    	} finally {
+    		filein.close();
+    	}
+    }
+    
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -187,9 +252,20 @@ public class MainApp extends Application {
 			showFicheCrypto(index);
 		}
 		
-		
+		this.primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent e) {
+				try {
+					sauvegardeCrypto();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 	}
+	
 	
 
 	public static void main(String[] args) {

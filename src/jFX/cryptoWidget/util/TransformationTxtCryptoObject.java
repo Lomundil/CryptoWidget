@@ -38,13 +38,13 @@ public class TransformationTxtCryptoObject {
 		    		case 7: String prix = this.recupInfo(sCurrentLine);
 		    				cM.setPrix(Double.parseDouble(prix));
 		    				break;
-		    		case 8: String volume = this.recupInfo(sCurrentLine);
+		    		case 9: String volume = this.recupInfo(sCurrentLine);
 		    				cM.setVolume(Double.parseDouble(volume));
 		    				break;
-		    		case 9: String marketCap = this.recupInfo(sCurrentLine);
+		    		case 10: String marketCap = this.recupInfo(sCurrentLine);
 		    				 cM.setMarketcap(Double.parseDouble(marketCap));
 		    				 break;
-		    		case 14: String variation24 = this.recupInfo(sCurrentLine);
+		    		case 15: String variation24 = this.recupInfo(sCurrentLine);
 		    				 cM.setVariation(Float.parseFloat(variation24));
 		    				 break;
 		    		default: break;
@@ -102,4 +102,5 @@ public class TransformationTxtCryptoObject {
 		info = line.substring(index1, index2);
 		return info;
 	}
+	
 }

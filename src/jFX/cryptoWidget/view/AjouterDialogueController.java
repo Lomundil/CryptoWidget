@@ -45,6 +45,7 @@ public class AjouterDialogueController {
 	public void setCrypto(CryptoMonnaie cM) {
 		this.cM = cM;
 	}
+
 	
 	/**
      * Returns true if the user clicked OK, false otherwise.
@@ -60,14 +61,13 @@ public class AjouterDialogueController {
 		if(inputNameCryptoValid()) {
 			//Connection au site coinMarketCap pour récupérer les informations
 			Connection con = new Connection();
-			CryptoMonnaie cryptoTemp = new CryptoMonnaie();
-			cryptoTemp.setNomCrypto(nomCrypto.getText());
-			con.setURL(cryptoTemp.getNomCrypto());
-			con.creationCryptoFile(cryptoTemp.getNomCrypto());
+			this.cM.setNomCrypto(nomCrypto.getText());
+			con.setURL(this.cM.getNomCrypto());
+			con.creationCryptoFile(this.cM.getNomCrypto());
 			
 			//Transformer le .txt en object Crypto
 			TransformationTxtCryptoObject transfo = new TransformationTxtCryptoObject();
-			this.setCrypto(transfo.transfo(cryptoTemp)); 
+			this.cM = transfo.transfo(this.cM);
 			
 			okClicked = true;
             addDialogStage.close();

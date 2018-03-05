@@ -40,7 +40,7 @@ public class MainApp extends Application {
 	}
 	
 	public ObservableList<CryptoMonnaie> getCryptoData(){
-		return cryptoData;
+		return this.cryptoData;
 	}
 	/**
 	 * Initialisation du rootLayout 
@@ -85,12 +85,14 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/GestionCrypto.fxml"));
             gestionCrypto = (VBox) loader.load();
 
-            // Set person overview into the center of root layout.
+            // Set gestionCrypto into the center of root layout.
             rootScrollPane.setContent(gestionCrypto);   
-
+            
             // Give the controller access to the main app.
             GestionCryptoController controller = loader.getController();
             controller.setMainApp(this);
+            controller.actuFiche();
+            
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,6 +112,26 @@ public class MainApp extends Application {
             // Give the controller access to the main app.
             FicheCryptoController controller = loader.getController();
             controller.setMainApp(this, this.getCryptoData().get(index));
+            
+
+        } catch (IOException e) {
+            e.printStackTrace();
+    	}
+    }
+    
+    public void showFicheCrypto(CryptoMonnaie cM) {
+    	try {
+    		// Load ficheCrypto.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FicheCrypto.fxml"));
+            AnchorPane ficheCrypto = (AnchorPane) loader.load();
+
+            // Set gestionCrypto into the center of root layout.
+            gestionCrypto.getChildren().add(ficheCrypto);
+
+            // Give the controller access to the main app.
+            FicheCryptoController controller = loader.getController();
+            controller.setMainApp(this, cM);
             
 
         } catch (IOException e) {
@@ -158,6 +180,7 @@ public class MainApp extends Application {
 		initRootLayout();
 		initRootScrollPane();
 		showGestionCrypto();
+		System.out.println("test3");
 		//Affichage de toute les cryptos en mémoire
 		//Prévoir une sauvegarde
 		for(int index = 0; index<this.getCryptoData().size(); index++) {

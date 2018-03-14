@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -44,6 +46,7 @@ public class MainApp extends Application {
 	 * Les données des cryptos comme une liste de cryptos observables
 	 */
 	private ObservableList<CryptoMonnaie> cryptoData = FXCollections.observableArrayList();
+	private LinkedList<String> position = new LinkedList();
 	
 	/**
 	 * Constructeur
@@ -59,10 +62,15 @@ public class MainApp extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public ObservableList<CryptoMonnaie> getCryptoData(){
 		return this.cryptoData;
+	}
+	
+	public LinkedList<String> getPosition(){
+		return this.position;
 	}
 	/**
 	 * Initialisation du rootLayout 
@@ -188,6 +196,14 @@ public class MainApp extends Application {
         }
     }
 	
+    public void raz() {
+		this.gestionCrypto.getChildren().subList(1, this.gestionCrypto.getChildren().size()).clear();
+    	
+    }
+    
+    public void deleteFicheCrypto(int index) {
+    	this.gestionCrypto.getChildren().remove(index+1);
+    }
     /*
      * Sauvegarde des cryptos ajoutés par l'utilisateur
      */
@@ -209,7 +225,7 @@ public class MainApp extends Application {
     /*
      * Récupération des cryptos mis en sauvegarde
      */
-    private void recupSauvegarde() throws IOException {
+    public void recupSauvegarde() throws IOException {
     	TransformationTxtCryptoObject tr = new TransformationTxtCryptoObject();
     	try {
     		filein = new BufferedReader(new FileReader("resources/cryptoFile/Sauvegarde.txt"));
@@ -221,6 +237,7 @@ public class MainApp extends Application {
     			co.creationCryptoFile(strNom);
     			cMTemp = tr.transfo(cMTemp);
     			this.getCryptoData().add(cMTemp);
+    			this.getPosition().add(strNom);
     		}
     	} catch(FileNotFoundException fe) {
     		fe.printStackTrace();
@@ -245,7 +262,6 @@ public class MainApp extends Application {
 		initRootLayout();
 		initRootScrollPane();
 		showGestionCrypto();
-		System.out.println("test3");
 		//Affichage de toute les cryptos en mémoire
 		//Prévoir une sauvegarde
 		for(int index = 0; index<this.getCryptoData().size(); index++) {

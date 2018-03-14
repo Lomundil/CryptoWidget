@@ -1,0 +1,19 @@
+[
+    {
+        "id": "litecoin", 
+        "name": "Litecoin", 
+        "symbol": "LTC", 
+        "rank": "5", 
+        "price_usd": "163.831", 
+        "price_btc": "0.0197754", 
+        "24h_volume_usd": "431880000.0", 
+        "market_cap_usd": "9113423943.0", 
+        "available_supply": "55626981.0", 
+        "total_supply": "55626981.0", 
+        "max_supply": "84000000.0", 
+        "percent_change_1h": "0.12", 
+        "percent_change_24h": "-6.56", 
+        "percent_change_7d": "-12.25", 
+        "last_updated": "1521053641"
+    }
+]

@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import jFX.cryptoWidget.model.CryptoMonnaie;
 import jFX.cryptoWidget.util.TransformationTxtCryptoObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import jFX.cryptoWidget.MainApp;
@@ -63,11 +64,10 @@ public class GestionCryptoController {
 	private void handleAjouter() {
 		CryptoMonnaie cMTemp = new CryptoMonnaie();
         boolean okClicked = mainApp.showAjouterDialogController(cMTemp);
-        if (okClicked) {
-        	TransformationTxtCryptoObject transfo = new TransformationTxtCryptoObject();
-        	
+        if (okClicked) {      	
         	mainApp.getCryptoData().add(cMTemp);	//On ajoute la crypto à la liste
-        	 // On l'affiche
+        	mainApp.getPosition().add(cMTemp.getNomCrypto());
+        	 
         }
         
 	}
@@ -83,7 +83,8 @@ public class GestionCryptoController {
 	                 } else if (c.wasUpdated()) {
 		                          //update item
 	                 } else if (c.wasRemoved()){
-	                     
+	                     	mainApp.deleteFicheCrypto(mainApp.getPosition().lastIndexOf(c.getRemoved().get(0).getNomCrypto()));
+	                     	mainApp.getPosition().remove(c.getRemoved().get(0).getNomCrypto());
 	                 } else if (c.wasAdded()) {
 	                    	mainApp.showFicheCrypto(c.getAddedSubList().get(0)); 
 	                 }

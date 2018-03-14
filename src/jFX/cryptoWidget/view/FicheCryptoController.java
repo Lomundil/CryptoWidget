@@ -80,6 +80,6 @@ public class FicheCryptoController {
      */
     @FXML
     private void handleSupprimer() {
-    	
+    	this.mainApp.getCryptoData().remove(this.cM);   	
     }
 }

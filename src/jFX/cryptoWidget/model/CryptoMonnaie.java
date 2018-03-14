@@ -19,7 +19,7 @@ import javafx.beans.property.SimpleFloatProperty;
  * @author Charlie Maréchal
  */
 
-public class CryptoMonnaie {
+public class CryptoMonnaie{
 
 	private StringProperty nomCrypto;
 	private StringProperty siteCrypto;
@@ -47,7 +47,7 @@ public class CryptoMonnaie {
 		this.marketCap = new SimpleDoubleProperty(1500000);
 		this.variation = new SimpleFloatProperty(4);
 		this.volume = new SimpleDoubleProperty(120000);
-		
+
 	}
 	
 	public String getNomCrypto() {
@@ -109,7 +109,6 @@ public class CryptoMonnaie {
 	public DoubleProperty volumeProperty() {
 		return volume;
 	}
-		
 		
 	
 }

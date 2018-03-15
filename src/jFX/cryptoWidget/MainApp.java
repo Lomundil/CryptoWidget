@@ -185,6 +185,7 @@ public class MainApp extends Application {
             AjouterDialogueController controller = loader.getController();
             controller.setStage(dialogStage);
             controller.setCrypto(cM);
+            controller.setMainApp(this);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

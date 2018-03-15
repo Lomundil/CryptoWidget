@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import jFX.cryptoWidget.MainApp;
 import jFX.cryptoWidget.model.*;
 import jFX.cryptoWidget.util.Connection;
 import jFX.cryptoWidget.util.TransformationTxtCryptoObject;
@@ -20,6 +21,8 @@ public class AjouterDialogueController {
 	private Stage addDialogStage;
 	
 	private CryptoMonnaie cM;
+	
+	private MainApp mainApp;
 	
 	private boolean okClicked = false;
 	
@@ -45,7 +48,10 @@ public class AjouterDialogueController {
 	public void setCrypto(CryptoMonnaie cM) {
 		this.cM = cM;
 	}
-
+	
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
 	
 	/**
      * Returns true if the user clicked OK, false otherwise.
@@ -76,7 +82,7 @@ public class AjouterDialogueController {
 			// Show the error message.
             Alert alert = new Alert(AlertType.ERROR);
             alert.initOwner(addDialogStage);
-            alert.setTitle("Crypto non trouvé");
+            alert.setTitle("Crypto non trouvé ou déjà présente");
             alert.setHeaderText("Champ invalide");
             alert.setContentText("Veuillez vérifier le nom de la crypto entrée");
 
@@ -87,9 +93,11 @@ public class AjouterDialogueController {
 	private boolean inputNameCryptoValid() {
 		//Vérification que le nom existe sur le site coinmarketCap
 		Connection con = new Connection();
-		return (con.estExistant(nomCrypto.getText()));
+		return (con.estExistant(nomCrypto.getText()) && !mainApp.getPosition().contains(nomCrypto.getText()));
 		
 	}
+	
+	
 
 	/**
      * Called when the user clicks cancel.

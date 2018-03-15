@@ -1,1 +1,5 @@
 Litecoin
+Tron
+Bitcoin
+Ethereum
+iota

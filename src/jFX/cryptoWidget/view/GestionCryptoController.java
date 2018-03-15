@@ -8,10 +8,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import jFX.cryptoWidget.model.CryptoMonnaie;
+import jFX.cryptoWidget.util.Connection;
 import jFX.cryptoWidget.util.TransformationTxtCryptoObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import jFX.cryptoWidget.MainApp;
 
@@ -54,7 +56,17 @@ public class GestionCryptoController {
 	@FXML
 	private void handleActualiser() {
 		//Connection au site coinMarketCap pour actualiser l'ensemble de la liste
-		
+		Connection co = new Connection();
+		TransformationTxtCryptoObject tr = new TransformationTxtCryptoObject();
+		Iterator<String> i = mainApp.getPosition().iterator();
+		while(i.hasNext()) {
+			String nom = i.next();
+			co.setURL(nom);
+			co.creationCryptoFile(nom);
+		}
+		mainApp.getCryptoData().forEach(cM -> cM = tr.transfo(cM));
+		mainApp.raz();
+		mainApp.getCryptoData().forEach(cM -> mainApp.showFicheCrypto(cM));
 	}
 	
 	/**
@@ -81,7 +93,7 @@ public class GestionCryptoController {
 		        		 // Gérer les permutations
 		                     
 	                 } else if (c.wasUpdated()) {
-		                          //update item
+		                   
 	                 } else if (c.wasRemoved()){
 	                     	mainApp.deleteFicheCrypto(mainApp.getPosition().lastIndexOf(c.getRemoved().get(0).getNomCrypto()));
 	                     	mainApp.getPosition().remove(c.getRemoved().get(0).getNomCrypto());

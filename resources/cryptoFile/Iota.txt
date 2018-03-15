@@ -4,16 +4,16 @@
         "name": "IOTA", 
         "symbol": "MIOTA", 
         "rank": "13", 
-        "price_usd": "1.13218", 
-        "price_btc": "0.00013666", 
-        "24h_volume_usd": "40746200.0", 
-        "market_cap_usd": "3146928596.0", 
+        "price_usd": "1.12952", 
+        "price_btc": "0.00013612", 
+        "24h_volume_usd": "47126900.0", 
+        "market_cap_usd": "3139535045.0", 
         "available_supply": "2779530283.0", 
         "total_supply": "2779530283.0", 
         "max_supply": "2779530283.0", 
-        "percent_change_1h": "-1.27", 
-        "percent_change_24h": "-13.46", 
-        "percent_change_7d": "-26.55", 
-        "last_updated": "1521053650"
+        "percent_change_1h": "1.19", 
+        "percent_change_24h": "-5.88", 
+        "percent_change_7d": "-23.22", 
+        "last_updated": "1521124751"
     }
 ]
